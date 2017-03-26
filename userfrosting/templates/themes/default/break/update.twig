@@ -1,0 +1,123 @@
+{% extends "layouts/layout-break.twig" %}
+
+{% block page %}
+    {# By putting this in a special block, we ensure that it will be set AFTER the default values are set in the parent template,
+    but BEFORE the page itself is rendered. #}
+    {% set page = page | merge({
+    "title"       : "商品柜浏览 | 住视云商品柜控制中心",
+    "description" : "Your user dashboard."
+    }) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_css %}
+    <!-- Vendor styles -->
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/xeditable/bootstrap3-editable/css/bootstrap-editable.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/select2-3.5.2/select2.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/select2-bootstrap/select2-bootstrap.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.min.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/clockpicker/dist/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{{ site.uri.public }}/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/fonts/pe-icon-7-stroke/css/helper.css" />
+    <link rel="stylesheet" href="{{ site.uri.public }}/styles/style.css">
+
+{% endblock %}
+
+{% block content %}
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+                <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <h2 class="font-light m-b-xs">信息设置</h2>
+                <small>点击参数的值可直接进行设置！</small>
+            </div>
+        </div>
+    </div>
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+                    <table id="user" class="table table-bordered table-striped" style="clear: both">
+                        <thead>
+                        <tr>
+                            <td width="35%">参数</td>
+                            <td width="65%">值</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td width="35%">数据库ID</td>
+                            <td width="65%"><a id="deviceInfoId" data-type="text" class="editable"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">设备标识号</td>
+                            <td width="65%"><a id="deviceIdNo" data-type="text" class="editable"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">柜子类型</td>
+                            <td width="65%"><a href="#" id="deviceInfoType" class="editable editable-click" style="display: inline;"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">所在城市</td>
+                            <td width="65%"><a   id="deviceInfoCity" class="editable editable-click" style="display: inline;"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">IP地址</td>
+                            <td width="65%"><a id="deviceConnectionIp" class="editable"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">安装地址</td>
+                            <td><a href="#" id="deviceInfoAddress" data-type="textarea" data-pk="0" data-placeholder="Your comments here..." data-title="Enter comments" class="editable editable-pre-wrapped editable-click"></a></td>
+                        </tr>
+                        <tr>
+                            <td width="35%">安装时间</td>
+                            <td><a href="#" id="deviceInfoInstallTime" data-type="combodate" data-format="YYYY-MM-DD" data-viewformat="YYYY-MM-DD" data-template="YYYY-MM-DD" data-pk="1" data-title="Select Date of birth" class="editable editable-click" style="display: inline;"></a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block page_scripts %}
+    <!-- Vendor scripts -->
+    <script src="{{ site.uri.public }}/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/iCheck/icheck.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/sparkline/index.js"></script>
+    <script src="{{ site.uri.public }}/vendor/moment/moment.js"></script>
+    <script src="{{ site.uri.public }}/vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/select2-3.5.2/select2.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap-datepicker-master/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/clockpicker/dist/bootstrap-clockpicker.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="{{ site.uri.public }}/scripts/homer.js"></script>
+
+    <script src="{{ site.uri.public }}/myjs/update.js"></script>
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}

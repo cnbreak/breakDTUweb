@@ -1,0 +1,125 @@
+{% extends "layouts/layout-break.twig" %}
+
+{% block page %}
+    {# By putting this in a special block, we ensure that it will be set AFTER the default values are set in the parent template,
+    but BEFORE the page itself is rendered. #}
+    {% set page = page | merge({
+    "title"       : "商品柜浏览 | 控制中心",
+    "description" : "Your user dashboard."
+    }) %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_css %}
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/fontawesome/css/font-awesome.css"
+          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html"/>
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/metisMenu/dist/metisMenu.css"/>
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/animate.css/animate.css"/>
+    <link rel="stylesheet" href="{{ site.uri.public }}/vendor/bootstrap/dist/css/bootstrap.css"/>
+
+    <!-- App styles -->
+    <link rel="stylesheet" href="{{ site.uri.public }}/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css"/>
+    <link rel="stylesheet" href="{{ site.uri.public }}/fonts/pe-icon-7-stroke/css/helper.css"/>
+    <link rel="stylesheet" href="{{ site.uri.public }}/styles/style.css">
+{% endblock %}
+
+{% block content %}
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+                <a class="small-header-action" href="">
+                    <div class="clip-header">
+                        <i class="fa fa-arrow-up"></i>
+                    </div>
+                </a>
+                <h2 class="font-light m-b-xs">设备列表</h2>
+                <small>点击表里的列即可进行信息设置！</small>
+            </div>
+        </div>
+    </div>
+    <div class="content animate-panel">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hpanel" id="Tour-1">
+                    <div class="panel-heading">
+                        <div class="panel-tools">
+                            <a class="showhide"><i class="fa fa-chevron-up"></i></a> <a
+                                    class="closebox"><i class="fa fa-times"></i></a>
+                        </div>
+                        <i class="fa fa-table fa-fw"></i> 设备列表
+                    </div>
+                    <div class="panel-body">
+                        <div class="col-lg-3">
+                            <div class="hpanel">
+                                <div class="panel-body list">
+                                    <div class="panel-title text-center"><h3>设备详情</h3></div>
+                                    <div class="list-item-container">
+                                        <div class="list-item">
+                                            <small class="no-margins font-extra-bold  text-success">标识号:<span id="deviceIdNo"></span>
+                                            </small>
+                                        </div>
+                                        <div class="list-item">
+                                            <small class="no-margins font-extra-bold  text-success">类型:<span id="deviceInfoType"></span>
+                                            </small>
+                                        </div>
+                                        <div class="list-item">
+                                            <small class="no-margins font-extra-bold  text-success">城市:<span id="deviceInfoCity"></span>
+                                            </small>
+                                        </div>
+                                        <div class="list-item">
+                                            <small class="no-margins font-extra-bold  text-success">地址:<span
+                                                        id="deviceInfoAddress"></span></small>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="hpanel">
+                                <div class="panel-body list">
+                                    <div class="panel-title text-center"><h5>回显</h5></div>
+                                    <div id="msg_list" style="width: 100%;border:  1px solid gray; height: 100px;overflow: scroll;float: left;"></div>
+                                </div>
+                                <div class="panel-footer">
+                                    <div class="panel-title text-center"><h5>命令</h5></div>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="在此输入命令" id="command">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-success" onclick="send()">发送</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#<div id="msg_list" style="width: 598px;border:  1px solid gray; height: 300px;overflow: scroll;float: left;"></div>#}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block page_scripts %}
+    <script src="{{ site.uri.public }}/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/iCheck/icheck.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/peity/jquery.peity.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/sparkline/index.js"></script>
+    <script src="{{ site.uri.public }}/vendor/moment/min/moment-with-locales.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap-datetime/bootstrap-datetimepicker.js"></script>
+    <script src="{{ site.uri.public }}/vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="{{ site.uri.public }}/vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <script src="{{ site.uri.public }}/vendor/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <script src="{{ site.uri.public }}/myjs/WebSocket.js"></script>
+    <script src="{{ site.uri.public }}/myjs/send.js"></script>
+    <script type="text/javascript">
+
+    </script>
+    <script src="{{ site.uri.public }}/scripts/homer.js"></script>
+{% endblock %}
